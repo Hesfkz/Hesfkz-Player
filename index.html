@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesfkz Player</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        iframe {
+            border: none;
+            width: 100vw;
+            height: 100vh;
+        }
+        .blocker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: transparent;
+            z-index: 10;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let iframe = document.querySelector("iframe");
+            let blocker = document.querySelector(".blocker");
+
+            // Ativar tela cheia automaticamente
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+
+            // Remover bloqueio ao passar o mouse
+            blocker.addEventListener("mouseenter", function() {
+                blocker.style.display = "none";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="blocker"></div>
+    <iframe src="https://reidoscanais.tv/embed/?id=espn" allow="encrypted-media" allowfullscreen></iframe>
+</body>
+</html>
